@@ -40,4 +40,6 @@ const app = createApp(App)
 
 router.isReady().then(() => {
   app.mount('#app');
+}).catch(error => {
+  console.error('Failed to mount app:', error);
 });

@@ -1,93 +1,127 @@
 <template>
   <ion-app>
+    <ion-menu content-id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item v-for="(page, index) in appPages" :key="index" :router-link="page.url">
+            <ion-icon :icon="page.iosIcon" slot="start"></ion-icon>
+            <ion-label>{{ page.title }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
     <navbar />
-    <ion-menu menu-id="nav" content-id="main-content" type="push">
-
-<ion-content>
-  <ion-list id="inbox-list">
-    <ion-list-header>Welcome Back!</ion-list-header>
-    <div v-for="(p, i) in appPages">
-      <ion-menu-toggle menu="nav" :auto-hide="false" :key="i">
-        <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none"
-          :detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-          <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
-          <ion-label>{{ p.title }}</ion-label>
-        </ion-item>
-        <br v-if="appPages.length == i + 1">
-      </ion-menu-toggle>
-    </div>
-    
-    
-  </ion-list>
-
-
-</ion-content>
-</ion-menu>
-    <ion-router-outlet />
+    <ion-page style="display: flex; flex-direction: column; height: 100vh;">
+      <ion-content style="flex: 1; overflow-y: auto; padding-top: 56px;">
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+      </ion-content>
+      <footerObject style="flex-shrink: 0;"></footerObject>
+    </ion-page>
   </ion-app>
 </template>
+
 <script setup lang="ts">
 import {
   IonApp,
   IonContent,
   IonIcon,
   IonItem,
-  IonSpinner,
   IonLabel,
   IonList,
   IonListHeader,
-  IonButton,
   IonMenu,
   IonMenuToggle,
-  IonNote,
   IonRouterOutlet,
-  IonSplitPane,
-
+  IonPage
 } from '@ionic/vue';
 import { ref } from 'vue';
 import * as outlines from 'ionicons/icons';
-
-
-
-</script>
-<script lang="ts">
 import navbar from "./components/navbar.vue";
 
-var appPages: { title: string, url: string, iosIcon: string, mdIcon: string}[]
+const appPages = ref([
+  {
+    title: 'Home',
+    url: '/home',
+    iosIcon: outlines.homeOutline,
+    mdIcon: outlines.homeOutline,
+  },
+  {
+    title: 'Careers',
+    url: '/careers',
+    iosIcon: outlines.briefcaseOutline,
+    mdIcon: outlines.briefcaseOutline,
+  },
+  {
+    title: 'Security Systems',
+    url: '/security',
+    iosIcon: outlines.cameraOutline,
+    mdIcon: outlines.cameraOutline,
+  },
+  {
+    title: 'Contact Us',
+    url: '/contact',
+    iosIcon: outlines.peopleCircleOutline,
+    mdIcon: outlines.peopleCircleOutline,
+  },
+  {
+    title: 'Projects',
+    url: '/projects',
+    iosIcon: outlines.clipboardOutline,
+    mdIcon: outlines.clipboardOutline,
+  },
+]);
 
-var selectedIndex = ref(0);
+const selectedIndex = ref(0);
 
-
-
-
-
-
-    appPages = [
-      {
-        title: 'Login',
-        url: '/login',
-        iosIcon: outlines.logInOutline,
-        mdIcon: outlines.logInOutline,
-      }, {
-        title: 'Signup',
-        url: '/signup',
-        iosIcon: outlines.createOutline,
-        mdIcon: outlines.createOutline,
-      },
-
-
-    ];
-
-    const path = window.location.pathname.split('/')[1];
-    console.log(path)
-    if (path !== undefined) {
-      selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
-    }
-  
-
-
-
+const path = window.location.pathname.split('/')[1];
+if (path !== undefined) {
+  selectedIndex.value = appPages.value.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
+}
 </script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import footerObject from "./components/footer.vue";
+
+export default defineComponent({
+  components: {
+    footerObject,
+    navbar
+  },
+  name: 'App',
+  beforeCreate() {
+    console.log('App component beforeCreate');
+  },
+  created() {
+    console.log('App component created');
+  },
+  beforeMount() {
+    console.log('App component beforeMount');
+  },
+  mounted() {
+    console.log('App component mounted');
+  },
+  beforeUpdate() {
+    console.log('App component beforeUpdate');
+  },
+  updated() {
+    console.log('App component updated');
+  },
+  beforeUnmount() {
+    console.log('App component beforeUnmount');
+  },
+  unmounted() {
+    console.log('App component unmounted');
+  }
+});
+</script>
+
 <style>
 .fade-enter-active,
 .fade-leave-active {
@@ -98,10 +132,16 @@ var selectedIndex = ref(0);
 .fade-leave-to {
   opacity: 0;
 }
-</style>
-<style scoped>
+
+/* Add dark mode styles */
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  color: var(--ion-text-color, #000);
+}
+
+ion-menu.dark ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, #000));
+  color: var(--ion-text-color, #fff);
 }
 
 ion-menu.md ion-content {
@@ -133,17 +173,13 @@ ion-menu.md ion-list#inbox-list ion-list-header,
 ion-menu.md ion-list#user-list ion-list-header {
   font-size: 22px;
   font-weight: 600;
-
   min-height: 20px;
 }
 
 ion-menu.md ion-list-header {
   font-size: 16px;
-
   margin-bottom: 18px;
-
   color: #757575;
-
   min-height: 26px;
 }
 
@@ -214,7 +250,6 @@ ion-menu.ios ion-note {
 ion-note {
   display: inline-block;
   font-size: 16px;
-
   color: var(--ion-color-medium-shade);
 }
 
