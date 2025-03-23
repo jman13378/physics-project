@@ -1,18 +1,19 @@
 <template>
   <ion-page>
     <ion-content style="height: 100%; overflow-y: auto; text-align:center; padding-top: 56px;">
+      <!-- Adjust padding-top to ensure content is not blocked by the header -->
         <ion-item style="text-align:center" lines="none">
             <ion-label class="blue" style="font-size: xx-large;">
                 <b>Whatever your project, we've got the experience</b>
             </ion-label>
         </ion-item>
         <ion-grid>
-            <ion-row v-for="(project, index) in projects" :key="index">
-                <ion-col>
+            <ion-row>
+                <ion-col v-for="(project, index) in projects" :key="index">
                     <ion-img :src="project.image_location" style="width:270px;height:267px; margin-left:30%"></ion-img>
-                </ion-col>
-                <ion-col>
-                    {{ project.description }}
+                    <div style="margin-top: 10px;">
+                        {{ project.description }}
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>

@@ -18,7 +18,8 @@
 
     <navbar />
     <ion-page style="display: flex; flex-direction: column; height: 100vh;">
-      <ion-content style="flex: 1; overflow-y: auto; padding-top: 56px;">
+      <ion-content style="flex: 1; overflow-y: auto; top:60px">
+        <!-- Adjust padding-top to ensure content is not blocked by the header -->
         <ion-router-outlet id="main-content"></ion-router-outlet>
       </ion-content>
       <footerObject style="flex-shrink: 0;"></footerObject>

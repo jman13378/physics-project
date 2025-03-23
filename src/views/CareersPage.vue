@@ -1,6 +1,7 @@
 <template>
   <ion-page>
     <ion-content style="height: 100%; overflow-y: auto; text-align:center; padding-top: 56px;">
+      <!-- Adjust padding-top to ensure content is not blocked by the header -->
         <ion-item style="text-align:center" lines="none">
             <ion-label class="blue" style="font-size: xx-large;"><b>Careers</b></ion-label>
         </ion-item>
@@ -48,6 +49,14 @@
 .blue {
     color:#1C8AF7 !important;
 }
+.center-container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+}
+
+.inner-text {
+  text-align: left; /* Lines start at same point */
+}
 </style>
 <script setup lang="ts">
 
@@ -82,13 +91,3 @@ import * as outlines from 'ionicons/icons';
 
 
 </script>
-<style>
-.center-container {
-  display: flex;
-  justify-content: center; /* Horizontally center */
-}
-
-.inner-text {
-  text-align: left; /* Lines start at same point */
-}
-</style>
