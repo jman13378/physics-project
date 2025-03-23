@@ -1,6 +1,6 @@
 <template>
   <ion-app>
-    <ion-menu content-id="main-content">
+    <ion-menu content-id="main-content" v-if="isMobile">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -12,6 +12,18 @@
             <ion-icon :icon="page.iosIcon" slot="start"></ion-icon>
             <ion-label>{{ page.title }}</ion-label>
           </ion-item>
+
+          <ion-item lines="none"><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9" style="text-decoration: none; padding-top:100%"
+              class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
+              32905</a>
+          </ion-item>
+          <ion-item lines="none">(321)-271-9197</ion-item>
+          <ion-item lines="none">
+            <ion-label>Atlantis Electrical Systems</ion-label>
+
+          </ion-item>
+          <ion-item class="grey">©️{{ new Date().getFullYear() }} All Rights Reserved.</ion-item>
+
         </ion-list>
       </ion-content>
     </ion-menu>
@@ -22,7 +34,7 @@
         <!-- Adjust padding-top to ensure content is not blocked by the header -->
         <ion-router-outlet id="main-content"></ion-router-outlet>
       </ion-content>
-      <footerObject style="flex-shrink: 0;"></footerObject>
+      <footerObject style="flex-shrink: 0;" v-if="!isMobile"></footerObject>
     </ion-page>
   </ion-app>
 </template>
@@ -44,7 +56,10 @@ import {
 import { ref } from 'vue';
 import * as outlines from 'ionicons/icons';
 import navbar from "./components/navbar.vue";
-
+var isMobile = ref(false);
+setInterval(() => {
+  isMobile.value = window.outerWidth <= 1000;
+}, 100);
 const appPages = ref([
   {
     title: 'Home',

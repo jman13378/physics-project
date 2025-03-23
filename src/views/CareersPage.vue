@@ -49,6 +49,9 @@
 .blue {
     color:#1C8AF7 !important;
 }
+.grey {
+    color:#99aab5 !important;
+}
 .center-container {
   display: flex;
   justify-content: center; /* Horizontally center */
