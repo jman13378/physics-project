@@ -1,14 +1,13 @@
 <template>
 
-    <ion-footer>
-        <ion-toolbar style="padding-top:20px; padding-bottom:20px">
+        <ion-toolbar style="padding-top:20px; padding-bottom:20px; display: contents;">
 
             <ion-item lines="none">
-                <ion-label>Home</ion-label>
-                <ion-label>Careers</ion-label>
-                <ion-label>Security Systems</ion-label>
-                <ion-label>Contact</ion-label>
-                <ion-label>Projects</ion-label>
+                <ion-label><a href="/home">Home</a></ion-label>
+                <ion-label><a href="/careers">Careers</a></ion-label>
+                <ion-label><a href="/security">Security Systems</a></ion-label>
+                <ion-label><a href="/contact">Contact</a></ion-label>
+                <ion-label><a href="/projects">Projects</a></ion-label>
             </ion-item>
             <ion-item style="color:#99aab5" lines="none">
                 <p ><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9" style="color:#99aab5; text-decoration: none;">1270 Clearmont St NE STE 3, Palm Bay, FL
@@ -21,7 +20,6 @@
             </div>
         </ion-toolbar>
 
-    </ion-footer>
 </template>
 <script setup lang="ts">
 
@@ -51,6 +49,13 @@ import {
 
 
 </script>
+<style>
+ion-label a {
+    color: white;
+    text-decoration: none;
+    padding-right: 20px;
+}
+</style>
 <script lang="ts">
 import * as outlines from 'ionicons/icons';
 

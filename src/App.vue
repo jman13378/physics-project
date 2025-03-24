@@ -13,8 +13,8 @@
             <ion-label>{{ page.title }}</ion-label>
           </ion-item>
 
-          <ion-item lines="none"><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9" style="text-decoration: none; padding-top:100%"
-              class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
+          <ion-item lines="none"><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9"
+              style="text-decoration: none; padding-top:100%" class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
               32905</a>
           </ion-item>
           <ion-item lines="none">(321)-271-9197</ion-item>
@@ -29,13 +29,18 @@
     </ion-menu>
 
     <navbar />
-    <ion-page style="display: flex; flex-direction: column; ">
-      <ion-content style="flex: 1; overflow-y: auto; top:70px;">
+    <ion-page class="page-container">
+      <ion-content class="content-container">
         <!-- Adjust padding-top to ensure content is not blocked by the header -->
-        <ion-router-outlet id="main-content" style=" height: 89%;"></ion-router-outlet>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
       </ion-content>
-      <footerObject style="flex-shrink: 0;" v-if="!isMobile"></footerObject>
+      <footerObject class="footer" v-if="!isMobile"></footerObject>
     </ion-page>
+    <ion-fab side="bottom" vertical="bottom" horizontal="end" >
+      <ion-fab-button >
+        <ion-icon :icon="outlines.chatbox"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-app>
 </template>
 
@@ -45,6 +50,8 @@ import {
   IonContent,
   IonIcon,
   IonItem,
+  IonFab,
+  IonFabButton,
   IonLabel,
   IonList,
   IonListHeader,
@@ -271,5 +278,18 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 70px;
+  /* Adjust padding-top to ensure content is not blocked by the header */
 }
 </style>
