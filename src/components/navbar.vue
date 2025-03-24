@@ -31,7 +31,7 @@ import {
     IonItem,
     IonTitle
 } from "@ionic/vue";
-const logo = new URL("../assets/logo.png", import.meta.url).href;
+const logo = new URL("../assets/logo.jpg", import.meta.url).href;
 var isMobile = ref(false);
 setInterval(() => {
     isMobile.value = window.outerWidth <= 1000;

@@ -11,7 +11,7 @@
         </p>
         </p>
       <swiper-container  :slides-per-view="1" :navigation="true" :pagination="true" :autoplay="true" :speed="100"
-        style="width: 649px; height: 500px; margin-right:10%; margin-top:3%" >
+        style="width: 649px; height: 500px; margin-right:10%; margin-top:3%; " >
         <swiper-slide v-for="(image, index) in images" :key="index">
           <img :src="image" :alt="'Image' + index" />
         </swiper-slide>
