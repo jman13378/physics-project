@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import fs from 'fs';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem,IonImg} from '@ionic/vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { register } from 'swiper/element/bundle';
@@ -44,16 +45,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 const bicsiLogo = new URL('../assets/homepage/bicsi.png', import.meta.url).href
-const images = ref([
-  new URL('../assets/homepage/image1.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image2.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image3.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image4.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image5.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image6.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image7.jpg', import.meta.url).href,
-  new URL('../assets/homepage/image8.jpg', import.meta.url).href,
-]);
+
+
+const images = ref<string[]>([]);
+let excludeFileList: string[] = []
+for (let file of fs.readdirSync("./socketroutes")) {
+  if (excludeFileList.includes(file)) {
+    continue;
+  }
+  if (file.endsWith(".jpg") || file.endsWith(".png")) {
+    images.value.push(new URL(`../assets/homepage/${file}`, import.meta.url).href);
+  }
+}
 </script>
 
 <style scoped>
