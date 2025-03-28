@@ -58,6 +58,7 @@ const excludeFileList: string[] = [];
 
 // Dynamically import all images from the specified folder
 const files = import.meta.glob('../assets/homepage/swiper/*.{png,jpg}');
+console.log(files)
 for (const file in files) {
   if (!excludeFileList.includes(file)) {
     images.value.push(new URL(file, import.meta.url).href);
