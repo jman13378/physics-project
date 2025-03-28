@@ -4,37 +4,43 @@
       <!-- Adjust padding-top to ensure content is not blocked by the header -->
       <ion-item>
         <p>
-        <b>
-          <h1 style="left:10px">Professional, quality work</h1></b>
-          <p style="color:#1C8AF7">
-          When you have commercial Low Voltage and Electrical work that needs to be done quickly and with an eye for quality, look no further than Atlantis Electrical Systems. We have the most highly trained, industry certified Master Electricians, Journeyman Electricians, Bicsi RCDD, and Bicsi Technicians with years of experience working for  commercial, government, and all levels of Education.
+          <b>
+            <h1 style="left:10px">Professional, quality work</h1>
+          </b>
+        <p style="color:#1C8AF7">
+          When you have commercial Low Voltage and Electrical work that needs to be done quickly and with an eye for
+          quality, look no further than Atlantis Electrical Systems. We have the most highly trained, industry certified
+          Master Electricians, Journeyman Electricians, Bicsi RCDD, and Bicsi Technicians with years of experience
+          working for commercial, government, and all levels of Education.
         </p>
         </p>
-      <swiper-container  :slides-per-view="1" :navigation="true" :pagination="true" :autoplay="true" :speed="100"
-        style="width: 649px; height: 500px; margin-right:10%; margin-top:3%; " >
-        <swiper-slide v-for="(image, index) in images" :key="index">
-          <img :src="image" :alt="'Image' + index" />
-        </swiper-slide>
-      </swiper-container>
-    </ion-item>
-    <ion-item>
-      <p>
+        <swiper-container :slides-per-view="1" :navigation="true" :pagination="true" :autoplay="true" :speed="100"
+          style="width: 649px; height: 500px; margin-right:10%; margin-top:3%; ">
+          <swiper-slide v-for="(image, index) in images" :key="index">
+            <img :src="image" :alt="'Image' + index" />
+          </swiper-slide>
+        </swiper-container>
+      </ion-item>
+      <ion-item>
+        <p>
         <h1>Go with someone who's been there</h1>
-        <p style="color:#1C8AF7; margin-right:20vw">All of our Electricians and Data-Comm Technicians possess years of on the job experience. Not only that, but they're also industry certified and committed to keeping up with the latest advances in the field. You can rest easy because your electrical job will be in the best and most skilled hands that it can be.</p>
-      </p>
-<ion-img  :src="bicsiLogo" alt="BICSI Logo" slot="end"/>
+        <p style="color:#1C8AF7; margin-right:20vw">All of our Electricians and Data-Comm Technicians possess years of
+          on the job experience. Not only that, but they're also industry certified and committed to keeping up with the
+          latest advances in the field. You can rest easy because your electrical job will be in the best and most
+          skilled hands that it can be.</p>
+        </p>
+        <ion-img :src="bicsiLogo" alt="BICSI Logo" slot="end" />
 
-    </ion-item>
+      </ion-item>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import fs from 'fs';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem,IonImg} from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonImg } from '@ionic/vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { register } from 'swiper/element/bundle';
-register()
+register();
 import "swiper/css";
 import 'swiper/swiper-bundle.css';
 import { ref } from 'vue';
@@ -44,17 +50,17 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-const bicsiLogo = new URL('../assets/homepage/bicsi.png', import.meta.url).href
 
+const bicsiLogo = new URL('../assets/homepage/bicsi.png', import.meta.url).href;
 
 const images = ref<string[]>([]);
-let excludeFileList: string[] = []
-for (let file of fs.readdirSync("./socketroutes")) {
-  if (excludeFileList.includes(file)) {
-    continue;
-  }
-  if (file.endsWith(".jpg") || file.endsWith(".png")) {
-    images.value.push(new URL(`../assets/homepage/${file}`, import.meta.url).href);
+const excludeFileList: string[] = [];
+
+// Dynamically import all images from the specified folder
+const files = import.meta.glob('../assets/homepage/swiper/*.{png,jpg}');
+for (const file in files) {
+  if (!excludeFileList.includes(file)) {
+    images.value.push(new URL(file, import.meta.url).href);
   }
 }
 </script>
