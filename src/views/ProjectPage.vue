@@ -59,7 +59,7 @@ import {
     IonRadio
 } from "@ionic/vue";
 
-const projects = [
+var projects = [
     { 
         image_location: new URL('../assets/projects/southwest.jpg', import.meta.url).href, 
         description: "South West Middle School Chiller Plant" 
@@ -73,6 +73,7 @@ const projects = [
         description: "Eastern Florida State College Student Union" 
     }
 ];
+
 </script>
 <script lang="ts">
 import * as outlines from 'ionicons/icons';

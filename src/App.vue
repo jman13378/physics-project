@@ -37,9 +37,7 @@
       <footerObject class="footer" v-if="!isMobile"></footerObject>
     </ion-page>
     <ion-fab side="bottom" vertical="bottom" horizontal="end" >
-      <ion-fab-button >
-        <ion-icon :icon="outlines.chatbox"></ion-icon>
-      </ion-fab-button>
+      <chat ></chat>
     </ion-fab>
   </ion-app>
 </template>
@@ -63,9 +61,10 @@ import {
 import { ref } from 'vue';
 import * as outlines from 'ionicons/icons';
 import navbar from "./components/navbar.vue";
+const chatOpen = ref(false)
 var isMobile = ref(false);
 setInterval(() => {
-  isMobile.value = window.outerWidth <= 1000;
+  isMobile.value = window.outerWidth <= mobileBarWidth;
 }, 100);
 const appPages = ref([
   {
@@ -81,8 +80,18 @@ const appPages = ref([
     mdIcon: outlines.briefcaseOutline,
   },
   {
-    title: 'Security Systems',
-    url: '/security',
+    title: 'Division 26 Electrical',
+    url: '/div26',
+    iosIcon: outlines.flashOutline,
+    mdIcon: outlines.flashOutline,
+  },{
+    title: 'Division 27 Communications',
+    url: '/div27',
+    iosIcon: outlines.radioOutline,
+    mdIcon: outlines.radioOutline,
+  },{
+    title: 'Division 28 Security',
+    url: '/div28',
     iosIcon: outlines.cameraOutline,
     mdIcon: outlines.cameraOutline,
   },
@@ -110,12 +119,15 @@ if (path !== undefined) {
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {mobileBarWidth} from "./helper"
 import footerObject from "./components/footer.vue";
+import chat from "./components/chat.vue";
 
 export default defineComponent({
   components: {
     footerObject,
-    navbar
+    navbar,
+    chat
   },
   name: 'App',
   beforeCreate() {

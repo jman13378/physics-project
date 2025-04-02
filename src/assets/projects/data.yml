@@ -6,10 +6,9 @@
 # Examples
 # efsc.jpg # Only image
 # efsc.png : EFSC is so cool # Image and description
-# efsc.jpeg : EFSC is\nCool # Description with a line break
 # efsc.gif
 #
-# Goes top to bottom, here and right to left on the site
+# Goes top to bottom here, and right to left on the site
 #
 # More Features to come later
 efsc.jpg : Eastern Florida State College Student Union

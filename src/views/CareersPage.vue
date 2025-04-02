@@ -46,6 +46,9 @@
   </ion-page>
 </template>
 <style>
+--blue {
+    color: #1C8AF7 !important;
+}
 .blue {
     color:#1C8AF7 !important;
 }
