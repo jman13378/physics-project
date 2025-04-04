@@ -6,7 +6,7 @@
 
     <ion-content style="height: 100%; overflow-y: auto; padding-top: 56px;">
       <!-- Adjust padding-top to ensure content is not blocked by the header -->
-           
+
 
       <ion-item>
         <p>
@@ -63,7 +63,16 @@ const images = ref<string[]>([]);
 const excludeFileList: string[] = [];
 
 // Dynamically import all images from the specified folder
-const files = import.meta.glob('../assets/homepage/swiper/*.{png,jpg}');
+const files = [
+  new URL('../assets/homepage/swiper/image1.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image2.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image3.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image4.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image5.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image6.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image7.jpg', import.meta.url).href,
+  new URL('../assets/homepage/swiper/image8.jpg', import.meta.url).href,
+  ];
 console.log(files)
 for (const file in files) {
   if (!excludeFileList.includes(file)) {
