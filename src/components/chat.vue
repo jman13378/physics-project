@@ -15,7 +15,11 @@
                     </p>
 
                     <transition name="transitions" v-for="m in messages">
-                        <p :class="'message ' + m.classes" v-html="parseMessage(m.content, m.preserve || false)"></p>
+                        <div>
+                            <p :class="'message ' + m.classes" v-html="parseMessage(m.content, m.preserve || false)">
+                            </p>
+                            <p> timestamp: {{ formatTimestamp(m.timestamp)}} </p>
+                        </div>
                         <!-- Add chat messages here -->
                     </transition>
                     <transition name="transitions">
@@ -36,7 +40,7 @@
                     </transition>
                 </div>
                 <div class="chat-footer" style="gap:10px">
-                    <ion-button slot="icon-only" @click="ShowMenuButtons= !ShowMenuButtons">
+                    <ion-button slot="icon-only" @click="ShowMenuButtons = !ShowMenuButtons">
                         <ion-icon :icon="outlines.menu">
                         </ion-icon>
                     </ion-button>
@@ -86,16 +90,21 @@ import * as outlines from 'ionicons/icons';
 import { isClosed, parseMessage } from "../chatHelper"
 import router from "@/router";
 var message = ref('');
-var messages = ref<{ from: string; classes: string[]; content: string, preserve?: boolean }[]>([]);
+var messages = ref<{ from: string; classes: string[]; content: string, timestamp: number, preserve?: boolean }[]>([]);
 const chatOpen = ref(false);
 const isOfficeClosed = ref(false);
 var ShowMenuButtons = ref(true);
+function formatTimestamp(timestamp: number): string {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString(); // Formats to a readable date and time
+}
 function sendMessage() {
     if (message.value.trim() !== '') {
         messages.value.push({
             from: 'user',
             classes: ['user-message'],
             content: message.value,
+            timestamp: Date.now()
         });
         message.value = '';
     }
@@ -114,19 +123,22 @@ function processInput(element: PointerEvent) {
             from: 'admin',
             classes: ['admin-message'],
             content: "Apply",
+            timestamp: Date.now()
         });
     } else if (input == "apply") {
         messages.value.push({
             from: 'user',
             classes: ['user-message'],
             content: "Apply",
+            timestamp: Date.now()
         });
         setTimeout(() => {
             messages.value.push({
                 from: 'system',
                 classes: ['system-message'],
                 content: "Now Redirecting you to the application page. Click <a href='/careers#applicationForm'>Here</a> if you aren't redirected.",
-                preserve: true
+                preserve: true,
+                timestamp: Date.now()
             });
             router.push('/careers#applicationForm')
         }, 1000);
@@ -203,19 +215,22 @@ export default {
 
 }
 
+.chat-body .user-message,
+.chat-body .admin-message {
+    max-width: 200px;
+    width: fit-content;
+}
+
 .chat-body .system-message {
     background-color: var(--ion-color-medium);
 }
 
 .chat-body .user-message {
-    width: 200px;
     margin-left: auto;
-    text-align: right;
     background-color: var(--ion-color-primary);
 }
 
 .chat-body .admin-message {
-    width: 200px;
     background-color: var(--ion-color-light-tint);
 
 }
@@ -264,6 +279,4 @@ export default {
     opacity: 0;
     transform: translateY(20px);
 }
-
-
 </style>
