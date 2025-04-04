@@ -1,4 +1,6 @@
 <template>
+      <title>Atlantis Electrical Systems | {{ $router.currentRoute.value.name }}</title>
+
   <ion-app>
 
 
