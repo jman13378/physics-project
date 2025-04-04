@@ -1,7 +1,13 @@
 <template>
   <ion-page>
+
+
+
+
     <ion-content style="height: 100%; overflow-y: auto; padding-top: 56px;">
       <!-- Adjust padding-top to ensure content is not blocked by the header -->
+           
+
       <ion-item>
         <p>
           <b>

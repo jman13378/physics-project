@@ -1,5 +1,27 @@
 <template>
   <ion-app>
+
+
+
+
+
+
+    <ion-modal :is-open="ModalOpen" handle-behavior="cycle">
+      <ion-content class="ion-padding">
+        <div class="ion-margin-top">
+          <h1><ion-icon style="color:yellow" :icon="outlines.warning" />Warning<ion-icon style="color:yellow" :icon="outlines.warning" /></h1>
+          <ion-label>This site shall not be used for official use as it is still in development.<br><br> Our Official website is located at <a class="blue"
+            href='https://aes-mlb.com'>https://aes-mlb.com</a></ion-label>
+        </div>
+        <br>
+        <br>
+        <a href="https://aes-mlb.com" target="_blank"><ion-button >Open Website</ion-button></a>
+        <ion-button @click="closeModal">Close</ion-button>
+      </ion-content>
+    </ion-modal>
+
+
+
     <ion-menu content-id="main-content" v-if="isMobile">
       <ion-header>
         <ion-toolbar>
@@ -7,6 +29,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+
         <ion-list>
           <ion-item v-for="(page, index) in appPages" :key="index" :router-link="page.url">
             <ion-icon :icon="page.iosIcon" slot="start"></ion-icon>
@@ -36,8 +59,8 @@
       </ion-content>
       <footerObject class="footer" v-if="!isMobile"></footerObject>
     </ion-page>
-    <ion-fab side="bottom" vertical="bottom" horizontal="end" >
-      <chat ></chat>
+    <ion-fab side="bottom" vertical="bottom" horizontal="end">
+      <chat></chat>
     </ion-fab>
   </ion-app>
 </template>
@@ -52,6 +75,8 @@ import {
   IonFabButton,
   IonLabel,
   IonList,
+  IonModal,
+  IonToolbar,
   IonListHeader,
   IonMenu,
   IonMenuToggle,
@@ -61,6 +86,15 @@ import {
 import { ref } from 'vue';
 import * as outlines from 'ionicons/icons';
 import navbar from "./components/navbar.vue";
+
+function closeModal() {
+  ModalOpen.value = false;
+  window.localStorage.setItem("warningApproved", "true")
+
+}
+
+var ModalOpen = ref(window.localStorage.getItem("warningApproved") == "true" ? false : true);
+
 const chatOpen = ref(false)
 var isMobile = ref(false);
 setInterval(() => {
@@ -84,12 +118,12 @@ const appPages = ref([
     url: '/div26',
     iosIcon: outlines.flashOutline,
     mdIcon: outlines.flashOutline,
-  },{
+  }, {
     title: 'Division 27 Communications',
     url: '/div27',
     iosIcon: outlines.radioOutline,
     mdIcon: outlines.radioOutline,
-  },{
+  }, {
     title: 'Division 28 Security',
     url: '/div28',
     iosIcon: outlines.cameraOutline,
@@ -119,7 +153,7 @@ if (path !== undefined) {
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {mobileBarWidth} from "./helper"
+import { mobileBarWidth } from "./helper"
 import footerObject from "./components/footer.vue";
 import chat from "./components/chat.vue";
 

@@ -1,5 +1,5 @@
 <template>
-    <transition name="chatbox">
+    <transition name="transitions">
         <div v-if="chatOpen">
             <!-- Chat Window -->
             <div class="chat-window">
@@ -8,15 +8,43 @@
                     <ion-button @click="toggleChat">X</ion-button>
                 </div>
                 <div class="chat-body">
-                    <p v-if="isOfficeClosed" style="color: red;">
-                        Sorry, Our Offices are closed. Hours: M-F 7:00 AM to 3:30 PM
+                    <p class="system-message message">Welcome to the chat!</p>
+
+                    <p v-if="isOfficeClosed" style="color: red;" class="system-message message">
+                        Our Offices are currently closed. Hours: M-F 7:00 AM to 3:30 PM
                     </p>
-                    <p v-else>Welcome to the chat!</p>
-                    <!-- Add chat messages here -->
+
+                    <transition name="transitions" v-for="m in messages">
+                        <p :class="'message ' + m.classes" v-html="parseMessage(m.content, m.preserve || false)"></p>
+                        <!-- Add chat messages here -->
+                    </transition>
+                    <transition name="transitions">
+                        <p v-if="ShowMenuButtons">Choose an option:
+                            <ion-buttons style="flex-wrap: wrap; gap: 2px;">
+                                <ion-button id="inquire" :onclick="processInput"
+                                    class="AutocompleteButton">Inquiry</ion-button>
+                                <ion-button id="apply" :onclick="processInput"
+                                    class="AutocompleteButton">Apply</ion-button>
+                                <ion-button id="estimate" :onclick="processInput" class="AutocompleteButton">Request
+                                    Estimate</ion-button>
+                                <ion-button id="contact" :onclick="processInput"
+                                    class="AutocompleteButton">Contact</ion-button>
+                                <ion-button id="rep" :onclick="processInput" v-if="!isOfficeClosed"
+                                    class="AutocompleteButton">Talk To Representative</ion-button>
+                            </ion-buttons>
+                        </p>
+                    </transition>
                 </div>
-                <div class="chat-footer" v-if="!isOfficeClosed">
-                    <ion-input type="text"  v-model="message" placeholder="Type a message..." />
-                    <ion-button slot="icon-only" click="sendMessage"><ion-icon :icon="outlines.send"></ion-icon></ion-button>
+                <div class="chat-footer" style="gap:10px">
+                    <ion-button slot="icon-only" @click="ShowMenuButtons= !ShowMenuButtons">
+                        <ion-icon :icon="outlines.menu">
+                        </ion-icon>
+                    </ion-button>
+                    <ion-textarea type="text" v-model="message" placeholder="Type a message..." />
+                    <ion-button slot="icon-only" :onclick="sendMessage">
+                        <ion-icon :icon="outlines.send">
+                        </ion-icon>
+                    </ion-button>
                 </div>
             </div>
         </div>
@@ -34,6 +62,7 @@ import {
     IonFab,
     IonIcon,
     IonHeader,
+    IonTextarea,
     IonFooter,
     IonToolbar,
     IonButtons,
@@ -54,23 +83,66 @@ import {
 } from "@ionic/vue";
 
 import * as outlines from 'ionicons/icons';
+import { isClosed, parseMessage } from "../chatHelper"
+import router from "@/router";
 var message = ref('');
+var messages = ref<{ from: string; classes: string[]; content: string, preserve?: boolean }[]>([]);
 const chatOpen = ref(false);
 const isOfficeClosed = ref(false);
+var ShowMenuButtons = ref(true);
 function sendMessage() {
-    if (message.value.trim()) {
-        console.log('Message sent:', message.value);
+    if (message.value.trim() !== '') {
+        messages.value.push({
+            from: 'user',
+            classes: ['user-message'],
+            content: message.value,
+        });
         message.value = '';
     }
 }
 function toggleChat() {
-    const now = new Date();
-    const currentTime = now.getHours() * 60 + now.getMinutes(); // Time in minutes since midnight
-    const closingTime = 15 * 60 + 30; // 3:30 PM in minutes since midnight
-    isOfficeClosed.value = currentTime > closingTime;
+    isOfficeClosed.value = isClosed();
 
     chatOpen.value = !chatOpen.value;
 }
+
+
+function processInput(element: PointerEvent) {
+    let input: string = (element.target as Element).id || "inquire"
+    if (input == "inquire") {
+        messages.value.push({
+            from: 'admin',
+            classes: ['admin-message'],
+            content: "Apply",
+        });
+    } else if (input == "apply") {
+        messages.value.push({
+            from: 'user',
+            classes: ['user-message'],
+            content: "Apply",
+        });
+        setTimeout(() => {
+            messages.value.push({
+                from: 'system',
+                classes: ['system-message'],
+                content: "Now Redirecting you to the application page. Click <a href='/careers#applicationForm'>Here</a> if you aren't redirected.",
+                preserve: true
+            });
+            router.push('/careers#applicationForm')
+        }, 1000);
+
+    } else if (input == "estimate") {
+
+    } else if (input == "contact") {
+
+    } else if (input == "rep") {
+
+    } else {
+
+    }
+    ShowMenuButtons.value = false;
+}
+
 </script>
 <script lang="ts">
 export default {
@@ -97,12 +169,13 @@ export default {
     position: fixed;
     bottom: 80px;
     right: 20px;
-    width: 300px;
+    width: 400px;
     background-color: var(--ion-color-light);
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 .chat-header {
     display: flex;
@@ -116,8 +189,46 @@ export default {
 
 .chat-body {
     padding: 10px;
-    height: 200px;
+    height: 400px;
     overflow-y: auto;
+}
+
+.message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+}
+
+.chat-body .system-message {
+    background-color: var(--ion-color-medium);
+}
+
+.chat-body .user-message {
+    width: 200px;
+    margin-left: auto;
+    text-align: right;
+    background-color: var(--ion-color-primary);
+}
+
+.chat-body .admin-message {
+    width: 200px;
+    background-color: var(--ion-color-light-tint);
+
+}
+
+.AutocompleteButton {
+
+    background-color: var(--ion-color-primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 2px;
+    margin-top: 10px;
 }
 
 .chat-footer {
@@ -143,14 +254,16 @@ export default {
     cursor: pointer;
 }
 
-.chatbox-enter-active,
-.chatbox-leave-active {
+.transitions-enter-active,
+.transitions-leave-active {
     transition: opacity 0.3s, transform 0.3s;
 }
 
-.chatbox-enter-from,
-.chatbox-leave-to {
+.transitions-enter-from,
+.transitions-leave-to {
     opacity: 0;
     transform: translateY(20px);
 }
+
+
 </style>
