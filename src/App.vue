@@ -1,5 +1,5 @@
 <template>
-      <title>Atlantis Electrical Systems | {{ $router.currentRoute.value.name }}</title>
+      <title>Manatee Power | {{ $router.currentRoute.value.name }}</title>
 
   <ion-app>
 
@@ -8,19 +8,7 @@
 
 
 
-    <ion-modal :is-open="ModalOpen" handle-behavior="cycle">
-      <ion-content class="ion-padding">
-        <div class="ion-margin-top">
-          <h1><ion-icon style="color:yellow" :icon="outlines.warning" />Warning<ion-icon style="color:yellow" :icon="outlines.warning" /></h1>
-          <ion-label>This site shall not be used for official use as it is still in development.<br><br> Our Official website is located at <a class="blue"
-            href='https://aes-mlb.com'>https://aes-mlb.com</a></ion-label>
-        </div>
-        <br>
-        <br>
-        <a href="https://aes-mlb.com" target="_blank"><ion-button >Open Website</ion-button></a>
-        <ion-button @click="closeModal">Close</ion-button>
-      </ion-content>
-    </ion-modal>
+
 
 
 
@@ -44,7 +32,7 @@
           </ion-item>
           <ion-item lines="none">(321)-271-9197</ion-item>
           <ion-item lines="none">
-            <ion-label>Atlantis Electrical Systems</ion-label>
+            <ion-label>Manatee Power</ion-label>
 
           </ion-item>
           <ion-item class="grey">©️{{ new Date().getFullYear() }} All Rights Reserved.</ion-item>
@@ -61,12 +49,34 @@
       </ion-content>
       <footerObject class="footer" v-if="!isMobile"></footerObject>
     </ion-page>
-    <ion-fab side="bottom" vertical="bottom" horizontal="end">
-      <chat></chat>
-    </ion-fab>
-  </ion-app>
-</template>
 
+  </ion-app>
+  </template>
+<style>
+
+--blue {
+  color: #1C8AF7 !important;
+}
+
+.blue {
+  color: #1C8AF7 !important;
+}
+
+.grey {
+  color: #99aab5 !important;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  /* Horizontally center */
+}
+
+.inner-text {
+  text-align: left;
+  /* Lines start at same point */
+}
+</style>
 <script setup lang="ts">
 import {
   IonApp,
@@ -97,7 +107,6 @@ function closeModal() {
 
 var ModalOpen = ref(window.localStorage.getItem("warningApproved") == "true" ? false : true);
 
-const chatOpen = ref(false)
 var isMobile = ref(false);
 setInterval(() => {
   isMobile.value = window.outerWidth <= mobileBarWidth;
@@ -157,13 +166,11 @@ if (path !== undefined) {
 import { defineComponent } from 'vue';
 import { mobileBarWidth } from "./helper"
 import footerObject from "./components/footer.vue";
-import chat from "./components/chat.vue";
 
 export default defineComponent({
   components: {
     footerObject,
     navbar,
-    chat
   },
   name: 'App',
   beforeCreate() {

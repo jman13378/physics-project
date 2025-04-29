@@ -14,7 +14,7 @@
                 <ion-button href="/projects">Projects</ion-button>
             </ion-buttons>
             <ion-item lines="none">
-                <ion-title>Atlantis Electrical Systems</ion-title>
+                <ion-title>Manatee Power</ion-title>
                 <a style="width:70px; margin-right:15%;" href="/home"><ion-img :src="logo" alt="AES Logo"
                         ></ion-img>
                 </a></ion-item>
