@@ -27,7 +27,7 @@
           </ion-item>
 
           <ion-item lines="none"><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9"
-              style="text-decoration: none; padding-top:100%" class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
+              style="text-decoration: none; padding-top:10%" class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
               32905</a>
           </ion-item>
           <ion-item lines="none">(321)-271-9197</ion-item>
@@ -119,39 +119,19 @@ const appPages = ref([
     mdIcon: outlines.homeOutline,
   },
   {
-    title: 'Careers',
-    url: '/careers',
+    title: 'Pros and Cons',
+    url: '/pac',
     iosIcon: outlines.briefcaseOutline,
     mdIcon: outlines.briefcaseOutline,
   },
   {
-    title: 'Division 26 Electrical',
-    url: '/div26',
+    title: 'How it works',
+    url: '/hiw',
     iosIcon: outlines.flashOutline,
     mdIcon: outlines.flashOutline,
-  }, {
-    title: 'Division 27 Communications',
-    url: '/div27',
-    iosIcon: outlines.radioOutline,
-    mdIcon: outlines.radioOutline,
-  }, {
-    title: 'Division 28 Security',
-    url: '/div28',
-    iosIcon: outlines.cameraOutline,
-    mdIcon: outlines.cameraOutline,
-  },
-  {
-    title: 'Contact Us',
-    url: '/contact',
-    iosIcon: outlines.peopleCircleOutline,
-    mdIcon: outlines.peopleCircleOutline,
-  },
-  {
-    title: 'Projects',
-    url: '/projects',
-    iosIcon: outlines.clipboardOutline,
-    mdIcon: outlines.clipboardOutline,
-  },
+  }
+
+
 ]);
 
 const selectedIndex = ref(0);
