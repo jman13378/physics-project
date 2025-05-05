@@ -6,12 +6,9 @@
             </ion-buttons>
             <ion-buttons v-else slot="end" style="gap:40px">
                 <ion-button href="/home">Home</ion-button>
-                <ion-button href="/careers">Careers</ion-button>
-                <ion-button href="/div26">Division 26 Electrical</ion-button>
-                <ion-button href="/div27">Division 27 Communications</ion-button>
-                <ion-button href="/div28">Division 28 Security</ion-button>
-                <ion-button href="/contact">Contact</ion-button>
-                <ion-button href="/projects">Projects</ion-button>
+                <ion-button href="/hiw">How it works</ion-button>
+                <ion-button href="/pac">Pros and cons</ion-button>
+
             </ion-buttons>
             <ion-item lines="none">
                 <ion-title>Manatee Power</ion-title>
