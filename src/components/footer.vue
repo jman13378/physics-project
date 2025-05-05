@@ -10,7 +10,7 @@
             </ion-item>
             <ion-item style="color:#99aab5" lines="none">
                 <p ><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9" style="color:#99aab5; text-decoration: none;">1270 Clearmont St NE STE 3, Palm Bay, FL
-                        32905</a><br>(321)-271-9197</p>
+                        32905</a><br>(321)-209-4955</p>
             </ion-item>
             
             <div slot="end">

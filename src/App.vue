@@ -22,7 +22,7 @@
               style="text-decoration: none; padding-top:10%" class="grey">1270 Clearmont St NE STE 3, Palm Bay, FL
               32905</a>
           </ion-item>
-          <ion-item lines="none">(321)-271-9197</ion-item>
+          <ion-item lines="none">(321)-209-4955</ion-item>
           <ion-item lines="none">
             <ion-label>Manatee Power</ion-label>
 

@@ -81,8 +81,7 @@
           </h1>
         </ion-row>
         <ion-row style="max-width: 75%; margin-left:12.5%"><h4>Want to learn more, tour a facility, or partner with us?</h4></ion-row>
-        <ion-row style="max-width: 75%; margin-left:12.5%; ">{{"Contact Us At (321)-271-9197 or at "}}<u style="color:cornflowerblue; padding-left:7px;"> contact@manateepower.com</u></ion-row>
-        <ion-row style="max-width: 75%; margin-left:12.5%; ">{{"Contact Us At (321)-271-9197 or at "}}<u style="color:cornflowerblue; padding-left:7px;"> contact@manateepower.com</u></ion-row>
+        <ion-row style="max-width: 75%; margin-left:12.5%; ">{{"Contact Us At (321)-209-4955 or at "}}<u style="color:cornflowerblue; padding-left:7px;"> contact@manateepower.com</u></ion-row>
       </p>
     </ion-grid>
 
