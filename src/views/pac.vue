@@ -1,5 +1,5 @@
 <template>
-    <ion-page>
+    <ion-page style="overflow: scroll;">
 
 
         <ion-grid style="margin-top:60px">
@@ -25,7 +25,7 @@
             <ion-row style="gap:50px">
                 <ion-col>
                     <p style="text-align: center; color:green">
-                        low carbon production
+                        Low carbon production
                     </p>
                 </ion-col>
                 <ion-col>
@@ -57,14 +57,69 @@
                     </p>
                 </ion-col>
             </ion-row>
+</ion-grid>
+
+
+
+            <ion-grid style="margin-top:60px">
+
+
+            <ion-row>
+                <ion-col>
+                    <h2 style="text-align: center;">Wind Power</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row style="gap:50px">
+                <ion-col>
+                    <h1 style="text-align: center;">Advantages</h1>
+                </ion-col>
+                <ion-col>
+                    <h1 style="text-align: center;">Disadvantages
+                    </h1>
+                </ion-col>
+            </ion-row>
+            <ion-row style="gap:50px">
+                <ion-col>
+                    <p style="text-align: center; color:green">
+                        Clean Renewable Energy
+                    </p>
+                </ion-col>
+                <ion-col>
+                    <p style="text-align: center; color:red">
+                        Creates Less Jobs
+                    </p>
+                </ion-col>
+            </ion-row> <ion-row style="gap:50px">
+                <ion-col>
+                    <p style="text-align: center; color:green">
+                        Space Efficient 
+                    </p>
+                </ion-col>
+                <ion-col>
+                    <p style="text-align: center; color:red">
+                        Wildlife Disruption
+                    </p>
+                </ion-col>
+            </ion-row>
+             <ion-row style="gap:50px">
+                <ion-col>
+                    <p style="text-align: center; color:green">
+                        Reduced Dependence on Fossil Fuels
+                    </p>
+                </ion-col>
+                <ion-col>
+                    <p style="text-align: center; color:red">
+                        The Initial Costs to build
+                    </p>
+                </ion-col>
+            </ion-row>
         </ion-grid>
 
 
+        <img :src="image" style="max-width: 400px; align-self: center; border-radius: 50px; "></img>
 
-        <ion-item>
-            <p>
-            </p>
-        </ion-item>
+
+
 
     </ion-page>
 </template>
@@ -75,7 +130,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { register } from 'swiper/element/bundle';
 register();
 import { Ref } from 'vue';
-
+let image  = new URL('../assets/nuclearaffectance.jpg', import.meta.url).href
 </script>
 
 <style scoped>
