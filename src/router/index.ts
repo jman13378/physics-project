@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import HomePage from '../views/HomePage.vue'
 import HowItWorksPage from '../views/HIW.vue'
 import pac from '../views/pac.vue';
+import Mission from '../views/mission.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
   path: '/pac',
   name: 'Pros And Cons',
   component:  pac
+
+},   {
+  path: '/ms',
+  name: 'Mission Statement',
+  component:  Mission
 
 }
 

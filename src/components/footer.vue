@@ -4,10 +4,9 @@
 
             <ion-item lines="none">
                 <ion-label><a href="/home">Home</a></ion-label>
-                <ion-label><a href="/careers">Careers</a></ion-label>
-                <ion-label><a href="/security">Security Systems</a></ion-label>
-                <ion-label><a href="/contact">Contact</a></ion-label>
-                <ion-label><a href="/projects">Projects</a></ion-label>
+                <ion-label><a href="/careers">How It Works</a></ion-label>
+                <ion-label><a href="/security">Pros And Cons</a></ion-label>
+                <ion-label><a href="/ms">Mission Statement</a></ion-label>
             </ion-item>
             <ion-item style="color:#99aab5" lines="none">
                 <p ><a href="https://maps.app.goo.gl/bZntJAdrXxbZD12C9" style="color:#99aab5; text-decoration: none;">1270 Clearmont St NE STE 3, Palm Bay, FL
@@ -15,7 +14,7 @@
             </ion-item>
             
             <div slot="end">
-                <ion-title>Atlantis Electrical Systems</ion-title>
+                <ion-title>Manatee Power</ion-title>
                 <ion-item style="color:#99aab5">©️{{ new Date().getFullYear() }} All Rights Reserved.</ion-item>
             </div>
         </ion-toolbar>

@@ -1,15 +1,7 @@
 <template>
-      <title>Manatee Power | {{ $router.currentRoute.value.name }}</title>
+  <title>Manatee Power | {{ $router.currentRoute.value.name }}</title>
 
   <ion-app>
-
-
-
-
-
-
-
-
 
 
     <ion-menu content-id="main-content" v-if="isMobile">
@@ -51,12 +43,18 @@
     </ion-page>
 
   </ion-app>
-  </template>
+</template>
 <style>
+ion-grid {
+  align-self: anchor-center;
+}
+
 ion-row {
   text-align: center;
   display: flex;
+  justify-content: center;
 }
+
 --blue {
   color: #1C8AF7 !important;
 }
@@ -124,14 +122,20 @@ const appPages = ref([
   {
     title: 'Pros and Cons',
     url: '/pac',
-    iosIcon: outlines.briefcaseOutline,
-    mdIcon: outlines.briefcaseOutline,
+    iosIcon: outlines.appsOutline,
+    mdIcon: outlines.appsOutline,
   },
   {
     title: 'How it works',
     url: '/hiw',
     iosIcon: outlines.flashOutline,
     mdIcon: outlines.flashOutline,
+  },
+  {
+    title: 'Mission Statement',
+    url: '/ms',
+    iosIcon: outlines.briefcaseOutline,
+    mdIcon: outlines.briefcaseOutline,
   }
 
 

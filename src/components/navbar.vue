@@ -8,12 +8,13 @@
                 <ion-button href="/home">Home</ion-button>
                 <ion-button href="/hiw">How it works</ion-button>
                 <ion-button href="/pac">Pros and cons</ion-button>
+                <ion-button href="/ms">mission statement</ion-button>
 
             </ion-buttons>
             <ion-item lines="none">
                 <ion-title>Manatee Power</ion-title>
-                <a style="width:70px; margin-right:15%;" href="/home"><ion-img :src="logo" alt="AES Logo"
-                        ></ion-img>
+                <a style="width:70px; margin-right:15%; " href="/home"><img style="border-radius: 100px; top:40px;" :src="logo" alt="Manatee Power Logo"
+                        ></img>
                 </a></ion-item>
         </ion-toolbar>
     </ion-header>
