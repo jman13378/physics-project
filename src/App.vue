@@ -53,7 +53,10 @@
   </ion-app>
   </template>
 <style>
-
+ion-row {
+  text-align: center;
+  display: flex;
+}
 --blue {
   color: #1C8AF7 !important;
 }
