@@ -5,10 +5,10 @@
                 <ion-menu-button></ion-menu-button>
             </ion-buttons>
             <ion-buttons v-else slot="end" style="gap:40px">
-                <ion-button href="/home">Home</ion-button>
-                <ion-button href="/hiw">How it works</ion-button>
-                <ion-button href="/pac">Pros and cons</ion-button>
-                <ion-button href="/ms">mission statement</ion-button>
+                <ion-button router-link="/home">Home</ion-button>
+                <ion-button router-link="/hiw">How it works</ion-button>
+                <ion-button router-link="/pac">Pros and cons</ion-button>
+                <ion-button router-link="/ms">mission statement</ion-button>
 
             </ion-buttons>
             <ion-item lines="none">

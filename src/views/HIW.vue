@@ -46,8 +46,6 @@
             </ion-row>
             <ion-row>
                 <img :src="wind" style="max-width: 300px; align-self: center; border-radius: 50px;"></img>
-
-
             </ion-row>
         </ion-grid>
 
