@@ -1,2 +1,2 @@
 
-export var mobileBarWidth = 1760
+export var mobileBarWidth = 999 
